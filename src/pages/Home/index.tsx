@@ -1,7 +1,7 @@
 import Banner from '../../components/Banner'
 import ProductsList from '../../components/ProductsList'
 
-import { useEffect, useState } from 'react'
+import { useGetOnSaleQuery, useGetSoonQuery } from '../../services/api'
 
 export interface GalleryItem {
   // for doing heritage is need use the word 'interface'
@@ -34,26 +34,20 @@ export type Game = {
 }
 
 const Home = () => {
-  const [promocoes, setPromocoes] = useState<Game[]>([])
-  const [emBreve, setEmBreve] = useState<Game[]>([])
+  const { data: promocoes } = useGetOnSaleQuery()
+  const { data: emBreve } = useGetSoonQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/eplay/promocoes')
-      .then((res) => res.json())
-      .then((res) => setPromocoes(res))
-
-    fetch('https://fake-api-tau.vercel.app/api/eplay/em-breve')
-      .then((res) => res.json())
-      .then((res) => setEmBreve(res))
-  }, [])
-
-  return (
-    <>
-      <Banner />
-      <ProductsList games={promocoes} title="Promoções" background="gray" />
-      <ProductsList games={emBreve} title="Em breve" background="black" />
-    </>
-  )
+  if (promocoes && emBreve) {
+    return (
+      <>
+        <Banner />
+        <ProductsList games={promocoes} title="Promoções" background="gray" />
+        <ProductsList games={emBreve} title="Em breve" background="black" />
+      </>
+    )
+  } else {
+    return <>Carregando...</>
+  }
 }
 
 export default Home
