@@ -7,12 +7,17 @@ import fechar from '../../assets/images/fechar.png'
 
 export const CartContainer = styled.div`
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: flex-end;
+
+  &.is-open {
+    display: flex;
+  }
 `
 
 export const Overlay = styled.div`
@@ -103,5 +108,6 @@ export const CartItem = styled.li`
     position: absolute;
     top: 8px;
     right: 0;
+    cursor: pointer;
   }
 `
