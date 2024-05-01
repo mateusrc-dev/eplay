@@ -17,18 +17,7 @@ const Button = ({
   to,
   variant = 'primary'
 }: Props) => {
-  if (type === 'button') {
-    return (
-      <S.ButtonContainer
-        variant={variant}
-        type="button"
-        title={title}
-        onClick={onClick}
-      >
-        {children}
-      </S.ButtonContainer>
-    )
-  } else if (type === 'submit') {
+  if (type === 'button' || type === 'submit') {
     return (
       <S.ButtonContainer
         variant={variant}
