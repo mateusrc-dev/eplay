@@ -5,7 +5,6 @@ import zoom from '../../assets/images/zoom.png'
 import closeIcon from '../../assets/images/close.png'
 
 import { useState } from 'react'
-import { GalleryItem } from '../../pages/Home'
 
 import * as S from './styles'
 
